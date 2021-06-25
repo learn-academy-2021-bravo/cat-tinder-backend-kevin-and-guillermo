@@ -31,4 +31,19 @@ end
 
   end
 end
+describe "meaningful status codes" do
+it "doesnt create a hero without a name" do
+  hero_params = {
+    hero:{
+      age:35,
+      enjoys: 'swimming',
+      superpower: 'talking to fish'
+    }
+  }
+  post '/heros', params: hero_params
+  expect(response.status).to eq 422
+  hero= JSON.parse(response.body)
+  expect(hero['name']).to include "can't be blank"
+end
+end
 end
