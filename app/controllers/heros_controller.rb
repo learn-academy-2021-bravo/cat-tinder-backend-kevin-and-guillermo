@@ -5,8 +5,11 @@ class HerosController < ApplicationController
     end
     def create
         hero = Hero.create(hero_params)
+        if hero.valid? 
         render json: hero
-
+        else 
+            render json: hero.errors, status: 422 
+        end
     end
     def update
 
