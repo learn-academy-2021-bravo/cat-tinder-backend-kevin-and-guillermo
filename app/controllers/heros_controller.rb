@@ -15,11 +15,13 @@ class HerosController < ApplicationController
 
     end
     def destroy
-        
+        hero = Hero.find(params[:id])
+        hero.destroy
+        render json: hero
     end
     private
     def hero_params
-        params.require(:hero).permit(:name,
+        params.require(:hero).permit(:name, :picture,
             :age, :enjoys, :superpower)
         
     end
